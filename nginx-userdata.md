@@ -13,5 +13,3 @@ systemctl restart nginx
 rm -rf reverse.conf
 rm -rf /fnc_user_data_config
 
-
-
