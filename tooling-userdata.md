@@ -24,7 +24,7 @@ sudo make rpm
 sudo yum install -y  ./build/amazon-efs-utils*rpm
 
 mkdir /var/www/
-sudo mount -t efs -o tls,accesspoint=fsap-072dcbbf66d01c7f4 fs-00f95e7d5fce567ab:/ /var/www/
+sudo mount -t efs -o tls,accesspoint=fsap-063b6c41be5936e60 fs-0da34877912ec9501:/ /var/www/
 yum install -y httpd
 systemctl start httpd
 systemctl enable httpd
