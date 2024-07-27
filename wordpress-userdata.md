@@ -17,9 +17,13 @@ mkdir /var/www/html/
 cp -R /wordpress/* /var/www/html/
 cd /var/www/html/
 touch healthstatus
-sed -i "s/localhost/fnc-database.ch8uqc8uw3p0.us-east-1.rds.amazonaws.com/g" wp-config.php
+# sed -i "s/localhost/fnc-database.clcmaymew814.us-east-1.rds.amazonaws.com/g" wp-config.php
+sed -i "s/localhost/${rds_endpoint}/g" wp-config.php
 sed -i "s/username_here/francis/g" wp-config.php
-sed -i "s/password_here/Admin123$/g" wp-config.php
+sed -i "s/password_here/devopspbl/g" wp-config.php
 sed -i "s/database_name_here/wordpressdb/g" wp-config.php
 chcon -t httpd_sys_rw_content_t /var/www/html/ -R
 systemctl restart httpd
+
+# Create databases
+mysql -h ${rds_endpoint} -P 3306 -u francis -pdevopspbl -e "CREATE DATABASE IF NOT EXISTS wordpressdb;"
