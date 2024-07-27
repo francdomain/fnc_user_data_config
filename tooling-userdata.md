@@ -23,4 +23,4 @@ mv /etc/httpd/conf.d/welcome.conf /etc/httpd/conf.d/welcome.conf_backup
 systemctl restart httpd
 
 # Create databases
-mysql -h ${rds_endpoint} -P 3306 -u francis -pdevopspbl -e "CREATE DATABASE IF NOT EXISTS toolingdb;"
+mysql -h ${rds_endpoint} -P 3306 -u francis -p devopspbl -e "CREATE DATABASE IF NOT EXISTS toolingdb;"

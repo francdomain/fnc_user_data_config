@@ -26,4 +26,4 @@ chcon -t httpd_sys_rw_content_t /var/www/html/ -R
 systemctl restart httpd
 
 # Create databases
-mysql -h ${rds_endpoint} -P 3306 -u francis -pdevopspbl -e "CREATE DATABASE IF NOT EXISTS wordpressdb;"
+mysql -h ${rds_endpoint} -P 3306 -u francis -p devopspbl -e "CREATE DATABASE IF NOT EXISTS wordpressdb;"
