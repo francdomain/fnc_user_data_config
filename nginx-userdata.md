@@ -6,7 +6,17 @@ exec > /var/log/nginx.log 2>&1
 sudo yum update -y
 sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 sudo yum install -y dnf-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
-sudo yum install -y wget vim python3 telnet htop git mysql net-tools chrony
+# sudo yum install -y wget vim python3 telnet htop git mysql net-tools chrony
+
+yum install wget -y
+yum install vim -y
+yum install python3 -y
+yum install telnet -y
+yum install htop -y
+yum install git -y
+yum install mysql -y
+yum install net-tools -y
+yum install chrony -y
 
 sudo systemctl start chronyd
 sudo systemctl enable chronyd
