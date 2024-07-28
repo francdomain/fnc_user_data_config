@@ -25,7 +25,7 @@ sudo make rpm
 sudo yum install -y ./build/amazon-efs-utils*rpm
 
 mkdir -p /var/www/
-sudo mount -t efs -o tls,accesspoint=fsap-0ff4678d3b2bd11f5 fs-0da34877912ec9501:/ /var/www/
+sudo mount -t efs -o tls,accesspoint=fsap-04d9a7dbdc13339b6 fs-0a71d71a5e6a321e6:/ /var/www/
 
 # Install and start Apache
 sudo yum install -y httpd
