@@ -31,7 +31,11 @@ sudo setsebool -P httpd_use_nfs=1
 # Clone and install EFS utils
 git clone https://github.com/aws/efs-utils
 cd efs-utils
-sudo yum install -y make rpm-build openssl-devel cargo
+
+sudo yum install -y make
+sudo yum install -y rpm-build
+sudo yum install openssl-devel -y
+sudo yum install cargo -y
 sudo make rpm
 sudo yum install -y ./build/amazon-efs-utils*rpm
 
