@@ -3,6 +3,7 @@
 exec > /var/log/wordpress.log 2>&1
 
 # Install necessary packages
+sudo yum update -y
 sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 sudo yum install -y dnf-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
 sudo yum install -y wget vim python3 telnet htop git mysql net-tools chrony
