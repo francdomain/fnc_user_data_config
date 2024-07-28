@@ -71,7 +71,9 @@ sed -i "s/$db = mysqli_connect('mysql.tooling.svc.cluster.local', 'admin', 'admi
 # chcon -t httpd_sys_rw_content_t /var/www/html/ -R
 
 # Set SELinux context
-sudo chcon -t httpd_sys_rw_content_t /var/www/html/ -R || true
+if selinuxenabled; then
+    sudo chcon -t httpd_sys_rw_content_t /var/www/html/ -R || true
+fi
 
 # Disable Apache welcome page and restart Apache
 sudo mv /etc/httpd/conf.d/welcome.conf /etc/httpd/conf.d/welcome.conf_backup

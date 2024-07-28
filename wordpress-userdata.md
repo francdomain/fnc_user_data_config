@@ -73,7 +73,9 @@ sed -i "s/database_name_here/wordpressdb/g" wp-config.php
 # chcon -t httpd_sys_rw_content_t /var/www/html/ -R
 
 # Set SELinux context
-sudo chcon -t httpd_sys_rw_content_t /var/www/html/ -R || true
+if selinuxenabled; then
+    sudo chcon -t httpd_sys_rw_content_t /var/www/html/ -R || true
+fi
 
 # Restart Apache
 systemctl restart httpd
