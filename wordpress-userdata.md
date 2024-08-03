@@ -2,43 +2,6 @@
 
 exec > /var/log/wordpress.log 2>&1
 
-# Install necessary packages
-sudo yum update -y
-sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-sudo yum install -y dnf-utils http://rpms.remirepo.net/enterprise/remi-release-8.rpm
-# sudo yum install -y wget vim python3 telnet htop git mysql net-tools chrony
-
-yum install wget -y
-yum install vim -y
-yum install python3 -y
-yum install telnet -y
-yum install htop -y
-yum install git -y
-yum install mysql -y
-yum install net-tools -y
-yum install chrony -y
-
-# Start and enable chrony
-sudo systemctl start chronyd
-sudo systemctl enable chronyd
-
-# Set SELinux booleans
-sudo setsebool -P httpd_can_network_connect=1
-sudo setsebool -P httpd_can_network_connect_db=1
-sudo setsebool -P httpd_execmem=1
-sudo setsebool -P httpd_use_nfs=1
-
-# Clone and install EFS utils
-git clone https://github.com/aws/efs-utils
-cd efs-utils
-
-sudo yum install -y make
-sudo yum install -y rpm-build
-sudo yum install openssl-devel -y
-sudo yum install cargo -y
-sudo make rpm
-sudo yum install -y ./build/amazon-efs-utils*rpm
-
 mkdir -p /var/www/
 sudo mount -t efs -o tls,accesspoint=fsap-04d9a7dbdc13339b6 fs-0a71d71a5e6a321e6:/ /var/www/
 
@@ -70,12 +33,7 @@ sed -i "s/username_here/francis/g" wp-config.php
 sed -i "s/password_here/devopspbl/g" wp-config.php
 sed -i "s/database_name_here/wordpressdb/g" wp-config.php
 
-# chcon -t httpd_sys_rw_content_t /var/www/html/ -R
-
-# Set SELinux context
-if selinuxenabled; then
-    sudo chcon -t httpd_sys_rw_content_t /var/www/html/ -R || true
-fi
+chcon -t httpd_sys_rw_content_t /var/www/html/ -R
 
 # Restart Apache
 systemctl restart httpd
