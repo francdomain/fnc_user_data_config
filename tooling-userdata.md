@@ -25,7 +25,7 @@ cp -R tooling/html/* /var/www/html/
 
 # Setup MySQL database
 cd /tooling
-mysql -h fnc-database.clcmaymew814.us-east-1.rds.amazonaws.com -u francis -pdevopspbl toolingdb < tooling-db.sql
+mysql -h fnc-database.clcmaymew814.us-east-1.rds.amazonaws.com -u francis -p toolingdb < tooling-db.sql
 
 cd /var/www/html/
 touch healthstatus
