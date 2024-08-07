@@ -46,6 +46,12 @@ yum install -y make
 
 yum install -y rpm-build
 
+# openssl-devel is needed by amazon-efs-utils-2.0.4-1.el9.x86_64
+sudo yum install openssl-devel -y
+
+# Cargo command needs to be installed as it is necessary for building the Rust project included in the source.
+sudo yum install cargo -y
+
 make rpm
 
 yum install -y  ./build/amazon-efs-utils*rpm
@@ -100,7 +106,7 @@ yum install -y  ./build/amazon-efs-utils*rpm
 ```
 yum install -y mod_ssl
 
-openssl req -newkey rsa:2048 -nodes -keyout /etc/pki/tls/private/ACS.key -x509 -days 365 -out /etc/pki/tls/certs/ACS.crt
+openssl req -newkey rsa:2048 -nodes -keyout /etc/pki/tls/private/fnc.key -x509 -days 365 -out /etc/pki/tls/certs/fnc.crt
 
 vi /etc/httpd/conf.d/ssl.conf
 ```
@@ -109,7 +115,7 @@ vi /etc/httpd/conf.d/ssl.conf
 
 
 # Login into the RDS instnace  and create  database for wordpress and tooling wordpress and tooling database
-mysql -h acs-database.cdqpbjkethv0.us-east-1.rds.amazonaws.com -u ACSadmin -p
+mysql -h fnc-database.cdqpbjkethv0.us-east-1.rds.amazonaws.com -u adminuser -p
 
 CREATE DATABASE toolingdb;
 CREATE DATABASE wordpressdb;
